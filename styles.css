@@ -29,11 +29,16 @@ body {
 
 .score {
   position: absolute;
-  font-size: 3vmin;
-  top: 2%;
+  top: 5%; /* Adjust position to avoid clipping at the edge */
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
+  font-size: 3vw; /* Use viewport width for scaling the font size */
+  color: #FFFFFF;
   z-index: 10;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.75); /* Add text shadow for better readability */
+  padding: 0.5em;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background to enhance visibility */
+  border-radius: 5px;
 }
 
 .start-screen {
