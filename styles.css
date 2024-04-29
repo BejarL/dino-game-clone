@@ -11,6 +11,15 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  color: white;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 .world {
@@ -21,8 +30,10 @@ body {
 .score {
   position: absolute;
   font-size: 3vmin;
-  right: 1vmin;
-  top: 1vmin;
+  top: 2%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
 }
 
 .start-screen {
@@ -39,9 +50,13 @@ body {
 
 .ground {
   --left: 0;
-  position: absolute;
-  width: 300%;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
   bottom: 0;
+  z-index: -1;
   left: calc(var(--left) * 1%);
 }
 
@@ -57,6 +72,6 @@ body {
   --bottom: 0;
   position: absolute;
   left: calc(var(--left) * 1%);
-  height: 30%;
+  height: 20%;
   bottom: 0;
 }
