@@ -23,17 +23,26 @@ body {
 }
 
 .world {
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  cursor: pointer;
 }
 
 .score {
   position: absolute;
-  font-size: 3vmin;
-  top: 2%;
+  top: 5%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
+  font-size: 3vw;
+  color: #ffffff;
   z-index: 10;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.75);
+  padding: 0.5em;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
 }
 
 .start-screen {
@@ -74,4 +83,33 @@ body {
   left: calc(var(--left) * 1%);
   height: 20%;
   bottom: 0;
+}
+
+.dino,
+.cactus,
+.ground {
+  position: absolute;
+  bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .world {
+    height: 50vh;
+  }
+
+  .dino {
+    width: 5vw;
+  }
+
+  .cactus {
+    width: 3vw;
+  }
+
+  .ground {
+    height: 10vh;
+  }
+
+  .score {
+    font-size: 5vw;
+  }
 }
