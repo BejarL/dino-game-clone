@@ -11,10 +11,8 @@ const scoreElem = document.querySelector('[data-score]')
 const startScreenElem = document.querySelector('[data-start-screen]')
 
 setPixelToWorldScale()
-
 window.addEventListener("resize", setPixelToWorldScale)
 document.addEventListener("keydown", handleStart, { once: true })
-document.addEventListener("touchstart", handleStart, { once: true });
 
 let lastTime
 let speedScale
@@ -22,28 +20,22 @@ let score
 
 // Time between frames
 function update(time) {
-    requestAnimationFrame(update);
-
     if (lastTime == null) {
         lastTime = time
         window.requestAnimationFrame(update)
         return
     }
-
     const delta = time - lastTime
-    updateGameComponents(delta);
 
-    lastTime = time;
-}
+    updateGround(delta, speedScale)
+    updateDino(delta, speedScale)
+    updateCactus(delta, speedScale)
+    updateSpeedScale(delta)
+    updateScore(delta)
+    if (checkLose()) return handleLose()
 
-function updateGameComponents(delta) {
-    updateGround(delta, speedScale);
-    updateDino(delta, speedScale);
-    updateCactus(delta, speedScale);
-    updateSpeedScale(delta);
-    updateScore(delta);
-
-    if (checkLose()) handleLose();
+    lastTime = time
+    window.requestAnimationFrame(update)
 }
 
 function checkLose() {
@@ -81,26 +73,19 @@ function handleStart() {
 function handleLose() {
     setDinoLose()
     setTimeout(() => {
-        document.addEventListener("touchstart", handleStart, { once: true })
         document.addEventListener("keydown", handleStart, { once: true })
         startScreenElem.classList.remove("hide")
     }, 100)
 }
 
 function setPixelToWorldScale() {
-    let worldToPixelScale = window.innerWidth / window.innerHeight < WORLD_WIDTH / WORLD_HEIGHT
-        ? window.innerWidth / WORLD_WIDTH
-        : window.innerHeight / WORLD_HEIGHT;
-
-    worldElem.style.width = `${WORLD_WIDTH * worldToPixelScale}px`;
-    worldElem.style.height = `${WORLD_HEIGHT * worldToPixelScale}px`;
-}
-
-document.addEventListener("touchstart", handleJump);
-
-function handleJump(e) {
-    if (e.type === "touchstart" && !isJumping) {
-        yVelocity = JUMP_SPEED;
-        isJumping = true;
+    let worldToPixelScale
+    if (window.innerWidth / window.innerHeight < WORLD_WIDTH / WORLD_HEIGHT) {
+        worldToPixelScale = window.innerWidth / WORLD_WIDTH
+    } else {
+        worldToPixelScale = window.innerHeight / WORLD_HEIGHT
     }
+
+    worldElem.style.width = `${WORLD_WIDTH * worldToPixelScale}px`
+    worldElem.style.height = `${WORLD_HEIGHT * worldToPixelScale}px`
 }
