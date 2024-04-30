@@ -29,15 +29,15 @@ body {
 
 .score {
   position: absolute;
-  top: 5%; /* Adjust position to avoid clipping at the edge */
+  top: 5%;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 3vw; /* Use viewport width for scaling the font size */
-  color: #FFFFFF;
+  font-size: 3vw;
+  color: #ffffff;
   z-index: 10;
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.75); /* Add text shadow for better readability */
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.75);
   padding: 0.5em;
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background to enhance visibility */
+  background: rgba(0, 0, 0, 0.5);
   border-radius: 5px;
 }
 
@@ -69,14 +69,16 @@ body {
   --bottom: 0;
   position: absolute;
   left: 1%;
-  height: 30%;
+  height: 40%;
   bottom: calc(var(--bottom) * 1%);
 }
 
 .cactus {
   --bottom: 0;
+  width: 200px;
+  height: 200px;
   position: absolute;
-  left: calc(var(--left) * 1%);
+  left: calc(var(--left) * 2%);
   height: 20%;
   bottom: 0;
 }
